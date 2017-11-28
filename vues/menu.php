@@ -10,6 +10,6 @@
     <h1>Menu</h1>
     <ul>
         <li><a href="?action=consultPublicLists">Voir les listes publiques</a></li>
-        <li>Voir mes listes privées</li>
+        <li><a href="?action=createList">Créer une liste</a></li>
     </ul>
 </nav>

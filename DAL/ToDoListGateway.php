@@ -18,7 +18,7 @@ class ToDoListGateway
 
     public function insert($name, $username)
     {
-        $query='INSERT INTO ToDoList VALUES(:list_name, :username)';
+        $query='INSERT INTO ToDoList VALUES(NULL, :list_name, :username, now())';
         if(!isset($username)){
             $this->con->executeQuery($query, array(
                 ':list_name'=>array($name, \PDO::PARAM_STR),

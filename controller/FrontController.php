@@ -16,7 +16,8 @@ class FrontController
         global $vues;
         $listAction_Visitor = array(
             'consultPublicLists',
-            'createPublicList',
+            'createList',
+            'insertList',
             'displayPublicList',
             'deletePublicList',
             'addPublicTask',
@@ -25,9 +26,8 @@ class FrontController
         $listAction_User = array(
             'connection',
             'authentification',
-            'discionnect',
+            'disconnect',
             'consultPrivateLists',
-            'createPrivateList',
             'displayPrivateList',
             'deletePrivateList',
             'addPrivateTask',
@@ -48,6 +48,11 @@ class FrontController
                     case "consultPublicLists":
                         new ControllerVisitor("consultPublicLists");
                         break;
+                    case "createList":
+                        new ControllerVisitor("createList");
+                        break;
+                    case "insertList":
+                        new ControllerVisitor("insertList");
                 }
             }
             if(in_array($action,$listAction_User)){

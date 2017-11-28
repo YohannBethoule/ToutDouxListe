@@ -15,4 +15,11 @@ class Visitor
         $res=$list_gt->getAllPublicLists();
         return $res;
     }
+
+    public static function insertList($list_name){
+        global $base, $blogin, $bpassword;
+        $con=new Connexion($base, $blogin, $bpassword);
+        $list_gt=new ToDoListGateway($con);
+        $list_gt->insert($list_name, null);
+    }
 }

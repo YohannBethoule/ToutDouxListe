@@ -23,8 +23,12 @@ class ControllerVisitor
                     $this->consultPublicLists();
                     break;
 
-                case "createPublicList":
-                    $this->createPublicList();
+                case "createList":
+                    $this->createList();
+                    break;
+
+                case "insertList":
+                    $this->insertList();
                     break;
 
                 case "displayPublicList":
@@ -68,9 +72,16 @@ class ControllerVisitor
         exit(0);
     }
 
-    private function createPublicList(){
+    private function createList(){
         global $rep, $vues;
         require_once($vues['newList']);
+    }
+
+    private function insertList(){
+        global $vues;
+        $list_name=Validation::nettoyer_string($_POST['list_name']);
+        Visitor::insertList($list_name);
+        require_once($vues['homepage']);
     }
 
     private function consultPublicLists(){
