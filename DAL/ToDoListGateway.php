@@ -6,10 +6,6 @@
  * Time: 19:14
  */
 
-namespace DAL;
-
-
-use model\Connexion;
 
 class ToDoListGateway
 {
@@ -38,7 +34,8 @@ class ToDoListGateway
 
     public function getAllPublicLists()
     {
-        $query = 'SELECT * FROM ToDoList WHERE username=NULL ';
+        $query = 'SELECT * FROM ToDoList WHERE username IS NULL';
         $this->con->executeQuery($query);
+        return $this->con->getResults();
     }
 }

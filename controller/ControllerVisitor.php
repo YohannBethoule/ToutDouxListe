@@ -19,11 +19,6 @@ class ControllerVisitor
         try {
             //switch des différentes actions pouvant être requises par le visiteur. Dans chaque cas, on appelle la méthode associée à l'action.
             switch ($action) {
-                case NULL:
-                    $this->toHomepage();
-                     $this->toHomepage();
-                    break;
-
                 case "consultPublicLists":
                     $this->consultPublicLists();
                     break;
@@ -71,5 +66,16 @@ class ControllerVisitor
         }
 
         exit(0);
+    }
+
+    private function createPublicList(){
+        global $rep, $vues;
+        require_once($vues['newList']);
+    }
+
+    private function consultPublicLists(){
+        global $rep, $vues;
+        $res=Visitor::consultPublicLists();
+        require_once($rep.$vues['displayLists']);
     }
 }

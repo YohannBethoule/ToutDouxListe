@@ -17,6 +17,6 @@ $bpassword="";
 //Vues
 
 $vues['homepage']='vues/homepage.php';
-$vues['connexion']='Vues/Connection.php';
-$vues['displayLists']='Vues/lists.php';
+$vues['erreur']='vues/error.php';
+$vues['displayLists']='vues/lists.php';
 ?>

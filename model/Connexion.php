@@ -6,10 +6,9 @@
  * Time: 22:32
  */
 
-namespace model;
 
 
-class Connexion
+class Connexion extends PDO
 {
     private $stmt;
 

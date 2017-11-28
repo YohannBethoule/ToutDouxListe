@@ -8,26 +8,20 @@
 ?>
 
 <html>
-<?php require_once ('vues/head.html');?>
+<?php require_once('head.php');?>
 
 <body>
 <div class="container-fluid">
-    <?php require_once ('vues/header.html');?>
+    <?php require_once('header.php');?>
     <div class="row">
-        <nav class="col-lg-2">
-            <h1>Menu</h1>
-            <ul>
-                <li>Voir les listes publiques</li>
-                <li>Voir mes listes privées</li>
-            </ul>
-        </nav>
+        <?php require_once('menu.php');?>
         <section class="col-lg-10">
             <h1>Bienvenue sur Tout Doux Listes</h1>
             <h2>Votre gestionnaire de listes très douces, pour organiser vos journées de manière soyeuse. </h2>
         </section>
     </div>
 
-    <?php require_once ('vues/footer.html');?>
+    <?php require_once('footer.php');?>
 
 </div>
 

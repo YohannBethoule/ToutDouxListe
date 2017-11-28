@@ -6,8 +6,6 @@
  * Time: 19:12
  */
 
-namespace controller;
-
 
 class Validation
 {

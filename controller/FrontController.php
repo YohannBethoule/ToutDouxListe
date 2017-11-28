@@ -38,10 +38,17 @@ class FrontController
         try {
             if (isset($_REQUEST['action'])) {
                 $action = $_REQUEST['action'];
-                $action = Nettoyer::nettoyer_string($action);
+                $action = Validation::nettoyer_string($action);
             } else{
                 require_once($vues['homepage']);
                 return;
+            }
+            if(in_array($action, $listAction_Visitor)){
+                switch ($action){
+                    case "consultPublicLists":
+                        new ControllerVisitor("consultPublicLists");
+                        break;
+                }
             }
             if(in_array($action,$listAction_User)){
                 if(!ModelUser::isUser())
@@ -58,7 +65,7 @@ class FrontController
 
         }catch (Exception $e){
             $dVueErreur = $e->getMessage();
-            require_once($vues['erreur']);
+            require_once($vues['error']);
         }
     }
 
