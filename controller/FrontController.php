@@ -6,11 +6,18 @@
  * Time: 18:35
  */
 
-//namespace controller;
-
+/**
+ * Get any request and call the right Controller to perform the required action.
+ * Class FrontController
+ */
 
 class FrontController
 {
+    /**
+     * FrontController constructor.
+     * Has 2 arrays, 1 for each actor of the website, which contains every possible action for its actor.
+     * For any action registered in $_REQUEST, call the right controller (visitor or user), and give it the action as parameter.
+     */
     function __construct()
     {
         global $vues;
@@ -38,36 +45,10 @@ class FrontController
 
         try {
             if (isset($_REQUEST['action'])) {
-                $action = $_REQUEST['action'];
-                $action = Validation::nettoyer_string($action);
+                $action = Validation::nettoyer_string($_REQUEST['action']);
             } else{
                 require_once($vues['homepage']);
                 return;
-            }
-            if(in_array($action, $listAction_Visitor)){
-                switch ($action){
-                    case "consultPublicLists":
-                        new ControllerVisitor("consultPublicLists");
-                        break;
-                    case "createList":
-                        new ControllerVisitor("createList");
-                        break;
-                    case "insertList":
-                        new ControllerVisitor("insertList");
-                        break;
-                    case "deleteList":
-                        new ControllerVisitor("deleteList");
-                        break;
-                    case "displayList":
-                        new ControllerVisitor("displayList");
-                        break;
-                    case "addTask":
-                        new ControllerVisitor("addTask");
-                        break;
-                    case "insertTask":
-                        new ControllerVisitor("insertTask");
-                        break;
-                }
             }
             if(in_array($action,$listAction_User)){
                 if(!ModelUser::isUser())

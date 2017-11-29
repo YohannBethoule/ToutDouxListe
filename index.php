@@ -18,7 +18,7 @@ require_once(__DIR__.'/config/Autoload.php');
 
 //crée une connexion à la base de données et charge nos fichiers
 session_start();
-Autoload::charger();
+Autoload::load();
 
 //instancie notre FrontController
 $cont = new FrontController();

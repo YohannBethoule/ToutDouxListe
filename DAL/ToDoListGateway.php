@@ -6,16 +6,26 @@
  * Time: 19:14
  */
 
-
+/**
+ * Class ToDoListGateway is the gateway to execute SQL queries on the ToDoList table.
+ */
 class ToDoListGateway
 {
+    /**
+     * @var Connection a connection to the database
+     */
     private $con;
 
-    public function __construct(Connexion $con)
+    public function __construct(Connection $con)
     {
         $this->con=$con;
     }
 
+    /**
+     * Inserts a new list in the databse
+     * @param $name the name of the list
+     * @param $username the username of the owner of the list, null if the list is public.
+     */
     public function insert($name, $username)
     {
         $query='INSERT INTO ToDoList VALUES(NULL, :list_name, :username, now())';
@@ -32,6 +42,9 @@ class ToDoListGateway
         }
     }
 
+    /**
+     * @return mixed all the public lists.
+     */
     public function getAllPublicLists()
     {
         $query = 'SELECT * FROM ToDoList WHERE username IS NULL';
@@ -39,6 +52,10 @@ class ToDoListGateway
         return $this->con->getResults();
     }
 
+    /**
+     * Deletes a list from the database.
+     * @param $id_list the id of the list
+     */
     public function delete($id_list){
         $query='DELETE FROM ToDoList WHERE id_list=:id_list';
         $this->con->executeQuery($query, array(

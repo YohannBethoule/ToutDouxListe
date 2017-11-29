@@ -3,15 +3,22 @@
  * Created by PhpStorm.
  * User: arkandros
  * Date: 27/11/17
- * Time: 19:04
+ * Time: 19:0
  */
 
+
+/**
+ * This class is a Singleton that charges all the php class and files in the project.
+ * Class Autoload
+ */
 class Autoload
 {
     private static $_instance = null;
 
-    //constructeur de type Singleton
-    public static function charger()
+    /**
+     * Call the constructor of the class if it doesn't exist yet.
+     */
+    public static function load()
     {
         if(null !== self::$_instance) {
             throw new RuntimeException(sprintf('%s is already started', __CLASS__));
@@ -25,7 +32,9 @@ class Autoload
         }
     }
 
-    //methode de fermeture de l'Autoload
+    /**
+     * Set $this->_instance to null.
+     */
     public static function shutDown()
     {
         if(null !== self::$_instance) {
@@ -38,7 +47,10 @@ class Autoload
         }
     }
 
-    //methode d'auto-chargement des fichiers
+    /**
+     * Loads automatically all the php files and class of the project.
+     * @param $class
+     */
     private static function _autoload($class)
     {
         global $rep;
@@ -46,7 +58,6 @@ class Autoload
         $dir =array('model/','./','config/','controller/','DAL/');
         foreach ($dir as $d){
             $file=$rep.$d.$filename;
-            //echo $file."<br/>";
             if (file_exists($file))
             {
                 require_once($file);

@@ -6,9 +6,9 @@
  * Time: 18:45
  */
 
-//namespace controller;
-
-
+/**
+ * Class ControllerVisitor gets an action and handle it.
+ */
 class ControllerVisitor
 {
     function __construct($action)
@@ -17,7 +17,6 @@ class ControllerVisitor
         $dVueErreur = array ();
 
         try {
-            //switch des différentes actions pouvant être requises par le visiteur. Dans chaque cas, on appelle la méthode associée à l'action.
             switch ($action) {
                 case "consultPublicLists":
                     $this->consultPublicLists();
@@ -76,11 +75,17 @@ class ControllerVisitor
         exit(0);
     }
 
+    /**
+     * Calls the webpage to create a new list.
+     */
     private function createList(){
         global $rep, $vues;
         require_once($vues['newList']);
     }
 
+    /**
+     * Insert a new list in the database.
+     */
     private function insertList(){
         global $vues;
         $list_name=Validation::nettoyer_string($_POST['list_name']);
@@ -88,12 +93,18 @@ class ControllerVisitor
         require_once($vues['homepage']);
     }
 
+    /**
+     * Gets all public lists and calls the webpage to display them.
+     */
     private function consultPublicLists(){
         global $rep, $vues;
         $res=Visitor::consultPublicLists();
         require_once($vues['displayLists']);
     }
 
+    /**
+     * Deletes a list from the database.
+     */
     private function deleteList(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
@@ -101,6 +112,9 @@ class ControllerVisitor
         require_once($vues['homepage']);
     }
 
+    /**
+     * Gets all tasks from the selected list in the database and calls the webpage to display them.
+     */
     private function displayList(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
@@ -109,12 +123,18 @@ class ControllerVisitor
         require_once($vues['viewList']);
     }
 
+    /**
+     * Calls the webpage to add a task to the selected list.
+     */
     private function addTask(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
         require_once($vues['taskCreation']);
     }
 
+    /**
+     * Insert a new task in the database.
+     */
     private function insertTask(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
