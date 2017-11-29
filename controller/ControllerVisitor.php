@@ -31,24 +31,24 @@ class ControllerVisitor
                     $this->insertList();
                     break;
 
-                case "displayPublicList":
-                    $this->displayPublicList();
+                case "displayList":
+                    $this->displayList();
                     break;
 
-                case "deletePublicList":
-                    $this->deletePublicList();
+                case "deleteList":
+                    $this->deleteList();
                     break;
 
-                case "addPublicTask":
-                    $this->addPublicTask();
+                case "addTask":
+                    $this->addTask();
                     break;
 
-                case "deletePublicTask":
-                    $this->deletePublicTask();
+                case "deleteTask":
+                    $this->deleteTask();
                     break;
 
-                case "validatePublicTask":
-                    $this->validatePublicTask();
+                case "validateTask":
+                    $this->validateTask();
                     break;
 
                 default:
@@ -87,6 +87,20 @@ class ControllerVisitor
     private function consultPublicLists(){
         global $rep, $vues;
         $res=Visitor::consultPublicLists();
-        require_once($rep.$vues['displayLists']);
+        require_once($vues['displayLists']);
+    }
+
+    private function deleteList(){
+        global $vues;
+        $id_list=Validation::nettoyer_int($_GET['id_list']);
+        Visitor::deleteList($id_list);
+        require_once($vues['homepage']);
+    }
+
+    private function displayList(){
+        global $vues;
+        $id_list=Validation::nettoyer_int($_GET['id_list']);
+        $res=Visitor::displayList($id_list);
+        require_once($vues['viewList']);
     }
 }

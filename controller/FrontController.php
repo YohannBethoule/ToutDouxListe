@@ -18,11 +18,11 @@ class FrontController
             'consultPublicLists',
             'createList',
             'insertList',
-            'displayPublicList',
-            'deletePublicList',
-            'addPublicTask',
-            'deletePublicTask',
-            'validatePublicTask');
+            'displayList',
+            'deleteList',
+            'addTask',
+            'deleteTask',
+            'validateTask');
         $listAction_User = array(
             'connection',
             'authentification',
@@ -53,6 +53,13 @@ class FrontController
                         break;
                     case "insertList":
                         new ControllerVisitor("insertList");
+                        break;
+                    case "deleteList":
+                        new ControllerVisitor("deleteList");
+                        break;
+                    case "displayList":
+                        new ControllerVisitor("displayList");
+                        break;
                 }
             }
             if(in_array($action,$listAction_User)){

@@ -20,5 +20,6 @@ $vues['homepage']='vues/homepage.php';
 $vues['erreur']='vues/error.php';
 $vues['displayLists']='vues/lists.php';
 $vues['newList']='vues/newList.php';
+$vues['viewList']='vues/viewList.php';
 
 ?>

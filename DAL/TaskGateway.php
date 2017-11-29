@@ -6,10 +6,6 @@
  * Time: 19:14
  */
 
-namespace DAL;
-
-
-use model\Connexion;
 
 class TaskGateway
 {
@@ -44,5 +40,13 @@ class TaskGateway
         $this->con->executeQuery($query, array(
             ':id_task'=>array($id_task, \PDO::PARAM_INT)
         ));
+    }
+
+    public function get($id_list){
+        $query='SELECT * FROM Task WHERE id_list=:id_list';
+        $this->con->executeQuery($query, array(
+            ':id_list'=>array($id_list, PDO::PARAM_INT)
+        ));
+        return $this->con->getResults();
     }
 }

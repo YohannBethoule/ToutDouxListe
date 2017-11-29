@@ -38,4 +38,11 @@ class ToDoListGateway
         $this->con->executeQuery($query);
         return $this->con->getResults();
     }
+
+    public function delete($id_list){
+        $query='DELETE FROM ToDoList WHERE id_list=:id_list';
+        $this->con->executeQuery($query, array(
+            ':id_list'=>array($id_list, PDO::PARAM_INT)
+        ));
+    }
 }

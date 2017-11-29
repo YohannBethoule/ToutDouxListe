@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: arkandros
- * Date: 28/11/17
- * Time: 19:54
+ * Date: 29/11/17
+ * Time: 14:34
  */
-?>
 
+?>
 <html>
 <?php require_once('head.php');?>
 
@@ -22,6 +22,7 @@
                 <tr>
                     <td>Nom</td>
                     <td>Date de création</td>
+                    <td>Date limite</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,9 +30,9 @@
                 if(isset($res)) {
                     foreach ($res as $row) {
                         echo "<tr>";
-                        echo "<td><a href=\"?id_list=".$row['id_list']."&action=displayList\">" . $row['list_name'] . "</a></td>";
-                        echo "<td>" . $row['creationDate'] . "</td>";
-                        echo "<td><a href=\"?id_list=".$row['id_list']."&action=deleteList\">supprimer</a></td>";
+                        echo "<td>" . $row['task_name'] . "</td>";
+                        echo "<td>" . $row['creation_date'] . "</td>";
+                        echo "<td>" . $row['latest_date'] . "</td>";
                         echo "</tr>";
                     }
                 }else{
@@ -51,4 +52,3 @@
 </body>
 
 </html>
-

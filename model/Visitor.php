@@ -22,4 +22,19 @@ class Visitor
         $list_gt=new ToDoListGateway($con);
         $list_gt->insert($list_name, null);
     }
+
+    public static function deleteList($id_list){
+        global $base, $blogin, $bpassword;
+        $con=new Connexion($base, $blogin, $bpassword);
+        $list_gt=new ToDoListGateway($con);
+        $list_gt->delete($id_list);
+    }
+
+    public static function displayList($id_list){
+        global $base, $blogin, $bpassword;
+        $con=new Connexion($base, $blogin, $bpassword);
+        $task_gt=new TaskGateway($con);
+        $res=$task_gt->get($id_list);
+        return $res;
+    }
 }
