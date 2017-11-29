@@ -43,6 +43,10 @@ class ControllerVisitor
                     $this->addTask();
                     break;
 
+                case "insertTask":
+                    $this->insertTask();
+                    break;
+
                 case "deleteTask":
                     $this->deleteTask();
                     break;
@@ -100,7 +104,23 @@ class ControllerVisitor
     private function displayList(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
+        $list_name=Validation::nettoyer_string($_GET['list_name']);
         $res=Visitor::displayList($id_list);
         require_once($vues['viewList']);
+    }
+
+    private function addTask(){
+        global $vues;
+        $id_list=Validation::nettoyer_int($_GET['id_list']);
+        require_once($vues['taskCreation']);
+    }
+
+    private function insertTask(){
+        global $vues;
+        $id_list=Validation::nettoyer_int($_GET['id_list']);
+        $task_name=Validation::nettoyer_string($_POST['task_name']);
+        $latest_date=$_POST['latest_date'];
+        Visitor::insertTask($id_list, $task_name, $latest_date);
+        require_once($vues['homepage']);
     }
 }

@@ -29,7 +29,7 @@
                 if(isset($res)) {
                     foreach ($res as $row) {
                         echo "<tr>";
-                        echo "<td><a href=\"?id_list=".$row['id_list']."&action=displayList\">" . $row['list_name'] . "</a></td>";
+                        echo "<td><a href=\"?id_list=".$row['id_list']."&list_name=".$row['list_name']."&action=displayList\">" . $row['list_name'] . "</a></td>";
                         echo "<td>" . $row['creationDate'] . "</td>";
                         echo "<td><a href=\"?id_list=".$row['id_list']."&action=deleteList\">supprimer</a></td>";
                         echo "</tr>";

@@ -18,11 +18,11 @@ class TaskGateway
 
     public function insert($name, $id_list, $username, $latest_date)
     {
-        $query='INSERT INTO Task VALUES(:id_list, :username, :task_name, SELECT SYSDATE FROM DUAL, to_date($latest_date, "DD/MM/YY"), NULL))';
+        $query='INSERT INTO Task VALUES(NULL, :id_list, :username, :task_name, now(), :latest_date, NULL)';
         $args=array(
-            ':id_list'=>array($id_list, \PDO::PARAM_STR),
-            ':task_name'=>$name,
-            ':latest_date'=>$latest_date
+            ':id_list'=>array($id_list, \PDO::PARAM_INT),
+            ':task_name'=>array($name, PDO::PARAM_STR),
+            ':latest_date'=>array($latest_date, PDO::PARAM_STR)
         );
         if(!isset($username))
         {

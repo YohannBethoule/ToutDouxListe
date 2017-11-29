@@ -37,4 +37,11 @@ class Visitor
         $res=$task_gt->get($id_list);
         return $res;
     }
+
+    public static function insertTask($id_list, $task_name, $latest_date){
+        global $base, $blogin, $bpassword;
+        $con=new Connexion($base, $blogin, $bpassword);
+        $task_gt=new TaskGateway($con);
+        $task_gt->insert($task_name, $id_list, null, $latest_date);
+    }
 }

@@ -21,6 +21,7 @@ class FrontController
             'displayList',
             'deleteList',
             'addTask',
+            'insertTask',
             'deleteTask',
             'validateTask');
         $listAction_User = array(
@@ -59,6 +60,12 @@ class FrontController
                         break;
                     case "displayList":
                         new ControllerVisitor("displayList");
+                        break;
+                    case "addTask":
+                        new ControllerVisitor("addTask");
+                        break;
+                    case "insertTask":
+                        new ControllerVisitor("insertTask");
                         break;
                 }
             }

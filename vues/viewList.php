@@ -16,7 +16,7 @@
     <div class="row">
         <?php require_once('menu.php');?>
         <section class="col-lg-10">
-            <h1>Listes publiques :</h1>
+            <?php echo "<h1>".$list_name.":</h1>" ?>
             <table>
                 <thead>
                 <tr>
@@ -42,6 +42,9 @@
                 ?>
                 </tbody>
             </table>
+            <p>
+                <?php echo "<a href=\"?id_list=".$id_list."&action=addTask\">Ajouter une tâche</a>" ;?>
+            </p>
         </section>
     </div>
 

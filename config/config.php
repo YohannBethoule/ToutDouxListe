@@ -21,5 +21,6 @@ $vues['erreur']='vues/error.php';
 $vues['displayLists']='vues/lists.php';
 $vues['newList']='vues/newList.php';
 $vues['viewList']='vues/viewList.php';
+$vues['taskCreation']='vues/taskCreation.php';
 
 ?>
