@@ -30,10 +30,12 @@ class FrontController
             'addTask',
             'insertTask',
             'deleteTask',
-            'validateTask');
+            'validateTask',
+            "signIn",
+            "signUp",
+            "connection",
+            'insertUser');
         $listAction_User = array(
-            'connection',
-            'authentification',
             'disconnect',
             'consultPrivateLists',
             'displayPrivateList',
@@ -51,13 +53,7 @@ class FrontController
                 return;
             }
             if(in_array($action,$listAction_User)){
-                if(!ModelUser::isUser())
-                    if ($action == "authentification")
-                        new ControllerUser("authentification");
-                    else
-                        new ControllerUser("connection");
-                else
-                    new ControllerUser($action);
+                new ControllerUser($action);
             }
             else{
                 new ControllerVisitor($action);

@@ -11,18 +11,21 @@
 <?php require_once('head.php');?>
 
 <body>
+<script src="javascript/script_validation.js"></script>
 <div class="container-fluid">
     <?php require_once('header.php');?>
     <div class="row">
         <?php require_once('menu.php');?>
         <section class="col-lg-10">
             <?php echo "<h1>".$list_name.":</h1>" ?>
-            <table>
+            <table id="todolist">
                 <thead>
                 <tr>
+                    <td></td>
                     <td>Nom</td>
                     <td>Date de création</td>
                     <td>Date limite</td>
+                    <td></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,9 +33,11 @@
                 if(isset($res)) {
                     foreach ($res as $row) {
                         echo "<tr>";
-                        echo "<td>" . $row['task_name'] . "</td>";
+                        echo "<td></td>";
+                        echo "<td id='name'>" . $row['task_name'] . "</td>";
                         echo "<td>" . $row['creation_date'] . "</td>";
                         echo "<td>" . $row['latest_date'] . "</td>";
+                        echo "<td><a href='?id_task=".$row['id_task']."&action=deleteTask'>supprimer</a></td>";
                         echo "</tr>";
                     }
                 }else{

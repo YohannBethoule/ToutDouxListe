@@ -21,5 +21,7 @@ $vues['displayLists']='vues/lists.php';
 $vues['newList']='vues/newList.php';
 $vues['viewList']='vues/viewList.php';
 $vues['taskCreation']='vues/taskCreation.php';
+$vues['signup']="vues/signup.php";
+$vues['signin']="vues/signin.php";
 
 ?>

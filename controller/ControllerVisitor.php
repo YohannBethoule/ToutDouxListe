@@ -54,6 +54,23 @@ class ControllerVisitor
                     $this->validateTask();
                     break;
 
+                case 'signIn':
+                    $this->signIn();
+                    break;
+
+                case "insertUser":
+                    $this->insertUser();
+                    break;
+
+                case "signUp":
+                    $this->signUp();
+                    break;
+
+                case "connection":
+                    $this->connection();
+                    break;
+
+
                 default:
                     $dVueErreur = "Erreur d'appel php.";
                     require($rep.$vues['erreur']);
@@ -97,7 +114,7 @@ class ControllerVisitor
      * Gets all public lists and calls the webpage to display them.
      */
     private function consultPublicLists(){
-        global $rep, $vues;
+        global $vues;
         $res=Visitor::consultPublicLists();
         require_once($vues['displayLists']);
     }
@@ -142,5 +159,34 @@ class ControllerVisitor
         $latest_date=$_POST['latest_date'];
         Visitor::insertTask($id_list, $task_name, $latest_date);
         require_once($vues['homepage']);
+    }
+
+    private function deleteTask(){
+        global $vues;
+        $id_task=Validation::nettoyer_string($_GET['id_task']);
+        Visitor::deleteTask($id_task);
+        require_once $vues['homepage'];
+    }
+
+    private function insertUser(){
+        $username=Validation::nettoyer_string($_POST['username']);
+        $password=Validation::nettoyer_string($_POST['password']);
+        Visitor::insertUser($username, $password);
+    }
+
+    private function signUp(){
+        global $vues;
+        require_once $vues['signup'];
+    }
+
+    private  function signIn(){
+        global $vues;
+        require_once $vues['signin'];
+    }
+
+    private function connection(){
+        $username=Validation::nettoyer_string($_POST['username']);
+        $password=Validation::nettoyer_string($_POST['password']);
+        User::connection($username, $password);
     }
 }

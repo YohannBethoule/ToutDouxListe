@@ -9,12 +9,13 @@
 
 class Visitor
 {
+
     public static function consultPublicLists(){
         global $base, $blogin, $bpassword;
         $con=new Connection($base, $blogin, $bpassword);
         $list_gt=new ToDoListGateway($con);
-        $res=$list_gt->getAllPublicLists();
-        return $res;
+        $list_manager=new ListManager($list_gt->getAllPublicLists());
+        return $list_manager->getAll();
     }
 
     public static function insertList($list_name){
@@ -44,5 +45,19 @@ class Visitor
         $con=new Connection($base, $blogin, $bpassword);
         $task_gt=new TaskGateway($con);
         $task_gt->insert($task_name, $id_list, null, $latest_date);
+    }
+
+    public static function deleteTask($id_task){
+        global $base, $blogin, $bpassword;
+        $con=new Connection($base, $blogin, $bpassword);
+        $task_gt=new TaskGateway($con);
+        $task_gt->delete($id_task);
+    }
+
+    public static function insertUser($username, $password){
+        global $base, $blogin, $bpassword;
+        $con=new Connection($base, $blogin, $bpassword);
+        $user_gt=new UserGateway($con);
+        $user_gt->insert($username, $password);
     }
 }

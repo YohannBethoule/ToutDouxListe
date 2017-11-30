@@ -12,7 +12,7 @@
 class TaskGateway
 {
     /**
-     * @var Connection a connexion to the database
+     * @var Connection a connection to the database
      */
     private $con;
 
@@ -57,6 +57,13 @@ class TaskGateway
             ':id_list'=>array($id_list, PDO::PARAM_INT)
         ));
         return $this->con->getResults();
+    }
+
+    public function delete($id_task){
+        $query='DELETE FROM Task WHERE id_task=:id_task';
+        $this->con->executeQuery($query, array(
+            ':id_task'=>array($id_task, PDO::PARAM_INT)
+        ));
     }
 
 /*

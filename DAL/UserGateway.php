@@ -16,7 +16,7 @@ class UserGateway
      */
     private $con;
 
-    public function __construct(Connexion $con){
+    public function __construct(Connection $con){
         $this->con=$con;
     }
 
@@ -26,17 +26,16 @@ class UserGateway
      * @param $password
      * @param $mail
      */
-    public function insert($username, $password, $mail){
-        $query='INSERT INTO User VALUES(:username, :password, :mail)';
+    public function insert($username, $password){
+        $query='INSERT INTO User VALUES(:username, :password)';
         $this->con->executeQuery($query, array(
             ':username'=>array($username, PDO::PARAM_STR),
-            ':password'=>array($password, PDO::PARAM_STR),
-            ':mail'=>array($mail, PDO::PARAM_STR)
+            ':password'=>array($password, PDO::PARAM_STR)
         ));
     }
 
     public function search($username){
-        $query='SELECT * FROM user WHERE username=:username';
+        $query='SELECT * FROM User WHERE username=:username';
         $this->con->executeQuery($query, array(
             ':username'=>array($username, PDO::PARAM_STR)
         ));
