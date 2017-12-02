@@ -6,7 +6,6 @@
  * Time: 18:54
  */
 
-$rep="/opt/lampp/htdocs/ToutDouxListe/";
 
 //Database informations
 $base="mysql:host=localhost;dbname=ToutDouxListe";

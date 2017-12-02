@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2017 at 11:14 PM
+-- Generation Time: Dec 02, 2017 at 09:41 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -38,6 +38,13 @@ CREATE TABLE `Task` (
   `validation_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Task`
+--
+
+INSERT INTO `Task` (`id_task`, `id_list`, `username`, `task_name`, `creation_date`, `latest_date`, `validation_date`) VALUES
+(2, 1, NULL, 'tash', '2017-11-29', '2017-12-01', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -47,8 +54,16 @@ CREATE TABLE `Task` (
 CREATE TABLE `ToDoList` (
   `id_list` int(11) NOT NULL,
   `list_name` varchar(200) NOT NULL,
-  `username` varchar(50) DEFAULT NULL
+  `username` varchar(50) DEFAULT NULL,
+  `creation_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ToDoList`
+--
+
+INSERT INTO `ToDoList` (`id_list`, `list_name`, `username`, `creation_date`) VALUES
+(1, 'liste test1', NULL, '2017-11-28');
 
 -- --------------------------------------------------------
 
@@ -58,9 +73,15 @@ CREATE TABLE `ToDoList` (
 
 CREATE TABLE `User` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `mail` varchar(100) NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `User`
+--
+
+INSERT INTO `User` (`username`, `password`) VALUES
+('DDDD', 'DDDD');
 
 --
 -- Indexes for dumped tables
@@ -95,13 +116,13 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT for table `Task`
 --
 ALTER TABLE `Task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ToDoList`
 --
 ALTER TABLE `ToDoList`
-  MODIFY `id_list` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
