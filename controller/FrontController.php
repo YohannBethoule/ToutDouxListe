@@ -26,10 +26,8 @@ class FrontController
             'createList',
             'insertList',
             'displayList',
-            'deleteList',
             'addTask',
             'insertTask',
-            'deleteTask',
             'validateTask',
             "signIn",
             "signUp",
@@ -43,6 +41,10 @@ class FrontController
             'addPrivateTask',
             'deletePrivateTask',
             'validatePrivateTask');
+        $listAction_Admin = array(
+            'deleteList',
+            'deleteTask',
+        );
 
 
         try {
@@ -52,11 +54,17 @@ class FrontController
                 require_once($vues['homepage']);
                 return;
             }
-            if(in_array($action,$listAction_User)){
-                new ControllerUser($action);
+            if (in_array($action, $listAction_User)) {
+                $controlUser = new ControllerUser();
+                $controlUser->$action();
             }
-            else{
-                new ControllerVisitor($action);
+            if (in_array($action, $listAction_Visitor)) {
+                $controlVisitor = new ControllerVisitor();
+                $controlVisitor->$action();
+            }
+            if (in_array($action, $listAction_Admin)) {
+               $controlAdmin = new ControllerAdmin();
+               $controlAdmin->$action();
             }
 
         }catch (Exception $e){

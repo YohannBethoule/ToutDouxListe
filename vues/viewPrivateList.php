@@ -13,7 +13,7 @@
 <body>
 <script src="javascript/script_validation.js"></script>
 <div class="container-fluid">
-    <?php require_once('header.php');?>
+    <?php require_once('headerCo.php');?>
     <div class="row">
         <?php require_once('menu.php');?>
         <section class="col-lg-10">
@@ -37,7 +37,7 @@
                         echo "<td id='name'>" . $row['task_name'] . "</td>";
                         echo "<td>" . $row['creation_date'] . "</td>";
                         echo "<td>" . $row['latest_date'] . "</td>";
-                        echo "<td><a href='?id_task=".$row['id_task']."&action=deletePublicTask'>supprimer</a></td>";
+                        echo "<td><a href='?id_task=".$row['id_task']."&action=deletePrivateTask'>supprimer</a></td>";
                         echo "</tr>";
                     }
                 }else{
@@ -48,7 +48,7 @@
                 </tbody>
             </table>
             <p>
-                <?php echo "<a href=\"?id_list=".$id_list."&action=addPublicTask\">Ajouter une tâche</a>" ;?>
+                <?php echo "<a href=\"?id_list=".$id_list."&action=addPrivateTask\">Ajouter une tâche</a>" ;?>
             </p>
         </section>
     </div>

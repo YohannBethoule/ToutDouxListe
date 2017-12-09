@@ -27,10 +27,11 @@ class UserGateway
      * @param $mail
      */
     public function insert($username, $password){
-        $query='INSERT INTO User VALUES(:username, :password)';
+        $query='INSERT INTO User VALUES(:username, :password, :admin)';
         $this->con->executeQuery($query, array(
             ':username'=>array($username, PDO::PARAM_STR),
-            ':password'=>array($password, PDO::PARAM_STR)
+            ':password'=>array($password, PDO::PARAM_STR),
+            ':admin'=> array(1, PDO::PARAM_INT)
         ));
     }
 
