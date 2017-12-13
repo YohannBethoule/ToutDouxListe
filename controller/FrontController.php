@@ -55,16 +55,47 @@ class FrontController
                 return;
             }
             if (in_array($action, $listAction_User)) {
-                $controlUser = new ControllerUser();
-                $controlUser->$action();
+                if(class_exists(ControllerUser)){
+                    $controlUser = new ControllerUser();
+                    if(method_exists($controlUser,$action)){
+                        $controlUser->$action();
+                    }
+                    else{
+                        throw new Exception("Action inexistante");
+                    }
+                }
+                else{
+                    throw new Exception("Classe inexistante");
+                }
+
             }
             if (in_array($action, $listAction_Visitor)) {
-                $controlVisitor = new ControllerVisitor();
-                $controlVisitor->$action();
+                if(class_exists(ControllerVisitor)){
+                    $controlVisitor = new ControllerVisitor();
+                    if(method_exists($controlVisitor,$action)) {
+                        $controlVisitor->$action();
+                    }
+                    else{
+                        throw new Exception("Action inexistante");
+                    }
+                }
+                else{
+                    throw new Exception("Classe inexistante");
+                }
             }
             if (in_array($action, $listAction_Admin)) {
-               $controlAdmin = new ControllerAdmin();
-               $controlAdmin->$action();
+                if(class_exists(ControllerAdmin)){
+                    $controlAdmin = new ControllerAdmin();
+                    if(method_exists($controlAdmin,$action)){
+                        $controlAdmin->$action();
+                    }
+                    else{
+                        throw new Exception("Action inexistante");
+                    }
+                }
+                else{
+                   throw new Exception("Classe inexistante");
+                }
             }
 
         }catch (Exception $e){
