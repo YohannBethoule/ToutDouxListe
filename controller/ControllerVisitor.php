@@ -76,9 +76,11 @@ class ControllerVisitor
     }
 
     public function insertUser(){
+        global $vues;
         $username=Validation::nettoyer_string($_POST['username']);
         $password=Validation::nettoyer_string($_POST['password']);
         Visitor::insertUser($username, $password);
+        require_once ($vues['homepage']);
     }
 
     public function signUp(){
@@ -92,8 +94,13 @@ class ControllerVisitor
     }
 
     public function connection(){
+        global $vues;
         $username=Validation::nettoyer_string($_POST['username']);
         $password=Validation::nettoyer_string($_POST['password']);
-        User::connection($username, $password);
+        if(User::connection($username, $password)){
+            require_once($vues['homepage']);
+        }else{
+            require_once($vues['erreur']);
+        }
     }
 }

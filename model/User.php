@@ -22,7 +22,7 @@ class User
     /**
      * @return isAdmin the user is admin (0) or not (1)
      */
-    public function getisAdmin()
+    public function isAdmin()
     {
         return $this->isAdmin;
     }
@@ -55,7 +55,6 @@ class User
             else
             {
                 $_SESSION['user']=$user['username'];
-                require($vues['connected']);
                 return true;
             }
         }
