@@ -24,14 +24,12 @@ class UserGateway
      * Inserts a new username in the databse
      * @param $username
      * @param $password
-     * @param $mail
      */
     public function insert($username, $password){
-        $query='INSERT INTO User VALUES(:username, :password, :admin)';
+        $query='INSERT INTO User VALUES(:username, :password)';
         $this->con->executeQuery($query, array(
             ':username'=>array($username, PDO::PARAM_STR),
-            ':password'=>array($password, PDO::PARAM_STR),
-            ':admin'=> array(1, PDO::PARAM_INT)
+            ':password'=>array($password, PDO::PARAM_STR)
         ));
     }
 

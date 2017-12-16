@@ -15,7 +15,6 @@
     <div class="row">
         <?php require_once ('vues/menu.php');?>
         <section class="col-lg-10">
-            <h1>403</h1>
             <?php
             if(isset($dVueErreur)) {
                 if(is_array($dVueErreur)) {

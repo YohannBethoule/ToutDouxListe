@@ -14,9 +14,7 @@ class ControllerUser
     }
     public function disconnect(){
         global $vues;
-        session_start();
-        $_SESSION['username'];
-        session_destroy();
+        session_unset();
 
         require_once($vues['homepage']);
     }

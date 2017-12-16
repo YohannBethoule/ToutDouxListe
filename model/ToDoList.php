@@ -58,7 +58,8 @@ class ToDoList
     /**
      * @return bool true if the username is null
      */
-    public function isPublic() : Boolean{
+    public function isPublic() : Boolean
+    {
         return $this->username==null;
     }
 
@@ -66,4 +67,5 @@ class ToDoList
     {
         return $this->creation_date;
     }
+
 }

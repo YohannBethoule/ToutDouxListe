@@ -15,7 +15,6 @@ class Task
 
     private $task_name;
 
-
     private $creation_date;
 
     private $latest_date;

@@ -45,10 +45,17 @@ class ToDoListGateway
     /**
      * @return mixed all the public lists.
      */
-    public function getAllPublicLists()
+    public function getByUser($username)
     {
-        $query = 'SELECT * FROM ToDoList WHERE username IS NULL';
-        $this->con->executeQuery($query);
+        if($username==null){
+            $query = 'SELECT * FROM ToDoList WHERE username IS NULL';
+            $this->con->executeQuery($query);
+        }else{
+            $query= 'SELECT * FROM ToDoList WHERE username=:username';
+            $this->con->executeQuery($query, array(
+                ':username'=>array($username, PDO::PARAM_STR)
+            ));
+        }
         return $this->con->getResults();
     }
 

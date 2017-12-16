@@ -29,7 +29,8 @@ class ControllerVisitor
     public function insertList(){
         global $vues;
         $list_name=Validation::nettoyer_string($_POST['list_name']);
-        Visitor::insertList($list_name);
+        $t=new ToDoList(null, $list_name, null, null);
+        $t->insert();
         require_once($vues['homepage']);
     }
 
@@ -38,7 +39,8 @@ class ControllerVisitor
      */
     public function consultPublicLists(){
         global $vues;
-        $res=Visitor::consultPublicLists();
+        $l_manager=new ListManager();
+        $l_manager->getByUser(null);
         require_once($vues['displayLists']);
     }
 
@@ -50,7 +52,7 @@ class ControllerVisitor
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
         $list_name=Validation::nettoyer_string($_GET['list_name']);
-        $res=Visitor::displayList($id_list);
+
         require_once($vues['viewList']);
     }
 
@@ -74,6 +76,23 @@ class ControllerVisitor
         Visitor::insertTask($id_list, $task_name, $latest_date);
         require_once($vues['homepage']);
     }
+
+
+    public function deleteList(){
+        global $vues;
+        $id_list=Validation::nettoyer_int($_GET['id_list']);
+        User::deletePublicList($id_list);
+        require_once($vues['homepage']);
+    }
+
+
+    public function deleteTask(){
+        global $vues;
+        $id_task=Validation::nettoyer_string($_GET['id_task']);
+        User::deletePublicTask($id_task);
+        require_once $vues['homepage'];
+    }
+
 
     public function insertUser(){
         global $vues;
@@ -100,7 +119,7 @@ class ControllerVisitor
         if(User::connection($username, $password)){
             require_once($vues['homepage']);
         }else{
-            require_once($vues['erreur']);
+            require_once($vues['error']);
         }
     }
 }

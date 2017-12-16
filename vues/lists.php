@@ -13,7 +13,7 @@
 <body>
 <div class="container-fluid">
     <?php require_once('header.php');?>
-    <div class="row">
+    <div class="l">
         <?php require_once('menu.php');?>
         <section class="col-lg-10">
             <h1>Listes publiques :</h1>
@@ -26,16 +26,15 @@
                 </thead>
                 <tbody>
                 <?php
-                if(isset($res)) {
-                    foreach ($res as $row) {
+                if(isset($l_manager)) {
+                    foreach ($l_manager->getAll() as $l) {
                         echo "<tr>";
-                        echo "<td><a href=\"?id_list=".$row->getId()."&list_name=".$row."&action=displayList\">" . $row . "</a></td>";
-                        echo "<td>" . $row->getCreation_Date() . "</td>";
-                        echo "<td><a href=\"?id_list=".$row->getId()."&action=deleteList\">supprimer</a></td>";
+                        echo "<td><a href=\"?id_list=".$l->getId()."&list_name=".$l."&action=displayList\">" . $l . "</a></td>";
+                        echo "<td>" . $l->getCreation_Date() . "</td>";
+                        echo "<td><a href=\"?id_list=".$l->getId()."&action=deleteList\">supprimer</a></td>";
                         echo "</tr>";
                     }
                 }else{
-                    var_dump($res);
                     echo "<h2>Erreur d'appel dans la page</h2>";
                 }
                 ?>
