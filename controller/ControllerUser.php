@@ -14,31 +14,23 @@ class ControllerUser
     }
     public function disconnect(){
         global $vues;
+        session_start();
+        $_SESSION['username'];
+        session_destroy();
 
         require_once($vues['homepage']);
     }
     public function consultPrivateLists(){
         global $vues;
-        require_once($vues['privateList']);
+        $l_manager= new ListManager();
+        $l_manager->getByUser($_SESSION['username']);
+        require_once($vues['displayLists']);
     }
-    public function displayPrivateList(){
+    public function deleteList(){
 
     }
-    public function deletePrivateTask(){
+    public function deleteTask(){
 
     }
-    public function addPrivateTask(){
-        global $vues;
-        $id_list=Validation::nettoyer_int($_GET['id_list']);
-        $task_name=Validation::nettoyer_string($_POST['task_name']);
-        $latest_date=$_POST['latest_date'];
-        User::privateInsert($id_list, $task_name, $latest_date);
-        require_once($vues['connected']);
-    }
-    public function deletePrivateList(){
 
-    }
-    public function validatePrivateTask(){
-
-    }
 }

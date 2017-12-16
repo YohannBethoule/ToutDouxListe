@@ -15,23 +15,15 @@ $bpassword="";
 
 //Vues
     $vues['error']='vues/error.php';
-    //visitors
-        $vues['homepage']='vues/homepage.php';
+    $vues['homepage']='vues/homepage.php';
 
-        $vues['displayLists']='vues/lists.php';
-        $vues['newList']='vues/newList.php';
-        $vues['viewList']='vues/viewList.php';
-        $vues['taskCreation']='vues/taskCreation.php';
+    $vues['displayLists']='vues/lists.php';
+    $vues['newList']='vues/newList.php';
+    $vues['viewList']='vues/viewList.php';
+    $vues['taskCreation']='vues/taskCreation.php';
 
-        $vues['signup']='vues/signup.php';
-        $vues['signin']='vues/signin.php';
+    $vues['signup']='vues/signup.php';
+    $vues['signin']='vues/signin.php';
 
-    //users
-        $vues['privateList']='vues/privateList.php';
-        $vues['newPrivate']='vues/newPrivateList.php';
-        $vues['viewPrivateList']='vues/viewPrivateList.php';
-        $vues['newPrivateTask']='vues/newPrivateTask.php';
-
-        $vues['connected']='vues/connectedHomepage.php';
 
 ?>

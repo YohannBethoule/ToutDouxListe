@@ -36,14 +36,8 @@ class FrontController
         $listAction_User = array(
             'disconnect',
             'consultPrivateLists',
-            'displayPrivateList',
-            'deletePrivateList',
-            'addPrivateTask',
-            'deletePrivateTask',
-            'validatePrivateTask');
-        $listAction_Admin = array(
-            'deleteList',
-            'deleteTask',
+            "deleteList",
+            "deleteTask"
         );
 
 
@@ -55,7 +49,7 @@ class FrontController
                 return;
             }
             if (in_array($action, $listAction_User)) {
-                if(class_exists(ControllerUser)){
+                if(class_exists('ControllerUser')){
                     $controlUser = new ControllerUser();
                     if(method_exists($controlUser,$action)){
                         $controlUser->$action();
@@ -70,7 +64,7 @@ class FrontController
 
             }
             if (in_array($action, $listAction_Visitor)) {
-                if(class_exists(ControllerVisitor)){
+                if(class_exists('ControllerVisitor')){
                     $controlVisitor = new ControllerVisitor();
                     if(method_exists($controlVisitor,$action)) {
                         $controlVisitor->$action();
@@ -81,20 +75,6 @@ class FrontController
                 }
                 else{
                     throw new Exception("Classe inexistante");
-                }
-            }
-            if (in_array($action, $listAction_Admin)) {
-                if(class_exists(ControllerAdmin)){
-                    $controlAdmin = new ControllerAdmin();
-                    if(method_exists($controlAdmin,$action)){
-                        $controlAdmin->$action();
-                    }
-                    else{
-                        throw new Exception("Action inexistante");
-                    }
-                }
-                else{
-                   throw new Exception("Classe inexistante");
                 }
             }
 
