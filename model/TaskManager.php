@@ -28,7 +28,7 @@ class TaskManager
         foreach ($res as $row)
         {
             $tasks[]=new Task($row['id_task'], $row['id_list'], $row['task_name'],
-                $row['username'], $row['creation_date'], $row['latest_date']);
+                $row['creation_date'], $row['latest_date'], $row['validation_date']);
         }
         return $tasks;
     }
@@ -36,7 +36,6 @@ class TaskManager
     public function getList($id_task){
         $id_list=$this->task_gt->getIdList($id_task);
         $res=$this->list_gt->get($id_list[0]['id_list']);
-        var_dump($res);
         $res=$res[0];
         return new ToDoList($res['id_list'], $res['list_name'], $res['username'], $res['creationDate']);
     }
@@ -46,7 +45,7 @@ class TaskManager
     }
 
     public function insertTask($id_list, $task_name, $latest_date){
-        $this->task_gt->insert($task_name, $id_list, null, $latest_date);
+        $this->task_gt->insert($task_name, $id_list, $latest_date);
     }
 
     public function validateTask($id_task){

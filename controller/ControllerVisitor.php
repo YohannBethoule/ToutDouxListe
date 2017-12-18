@@ -29,8 +29,11 @@ class ControllerVisitor
     public function insertList(){
         global $vues;
         $list_name=Validation::nettoyer_string($_POST['list_name']);
-        $t=new ToDoList(null, $list_name, null, null);
-        $t->insert();
+        $l_manager=new ListManager();
+        $username=Validation::nettoyer_string($_SESSION['user']);
+        
+        $l_manager->insert($list_name,null);
+        $l_manager->insert($list_name,$username);
         require_once($vues['homepage']);
     }
 
@@ -76,7 +79,11 @@ class ControllerVisitor
         $latest_date=$_POST['latest_date'];
         $t_manager=new TaskManager();
         $t_manager->insertTask($id_list, $task_name, $latest_date);
-        require_once($vues['homepage']);
+        $l_manager=new ListManager();
+        $l=$l_manager->getListById($id_list);
+        $loc="Location: index.php?action=displayList&id_list=".$l->getId()."&list_name=".$l;
+        header($loc);
+
     }
 
 
@@ -93,8 +100,10 @@ class ControllerVisitor
         global $vues;
         $id_task=Validation::nettoyer_string($_GET['id_task']);
         $t_manager=new TaskManager();
+        $l=$t_manager->getList($id_task);
         $t_manager->deleteTask($id_task);
-        require_once $vues['homepage'];
+        $loc="Location: index.php?action=displayList&id_list=".$l->getId()."&list_name=".$l;
+        header($loc);
     }
 
     public function validateTask(){

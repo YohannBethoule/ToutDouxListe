@@ -21,11 +21,9 @@
             <table id="todolist">
                 <thead>
                 <tr>
-                    <td></td>
                     <td>Nom</td>
                     <td>Date de création</td>
                     <td>Date limite</td>
-                    <td></td>
                 </tr>
                 </thead>
                 <tbody>

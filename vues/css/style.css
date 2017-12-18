@@ -43,10 +43,11 @@ nav{
     padding: 5px;
 }
 
-#todolist.checked{
+.checked{
     background-color: lightgray;
 }
 
-#todolist #name.checked{
+.checked #name{
     text-decoration: line-through;
+
 }

@@ -26,7 +26,11 @@ class ListManager
         return $this->lists;
     }
 
-
+    public function getListById($id_list){
+        $res=$this->list_gt->get($id_list);
+        $res=$res[0];
+        return new ToDoList($res['id_list'], $res['list_name'], $res['username'], $res['creationDate']);
+    }
 
     public function getByUser($username){
         $res=$this->list_gt->getByUser($username);

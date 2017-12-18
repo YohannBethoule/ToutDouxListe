@@ -77,6 +77,6 @@ class Task
     }
 
     public function isValid() : bool{
-        return $this->creation_date==null;
+        return $this->validation_date!=null;
     }
 }

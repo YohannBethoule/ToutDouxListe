@@ -28,22 +28,14 @@ class TaskGateway
      * @param $username the username of the user who owns the list, null if the list is public
      * @param $latest_date the latest_date to validate the task
      */
-    public function insert($name, $id_list, $username, $latest_date)
+    public function insert($name, $id_list, $latest_date)
     {
-        $query='INSERT INTO Task VALUES(NULL, :id_list, :username, :task_name, now(), :latest_date, NULL)';
-        $args=array(
+        $query='INSERT INTO Task VALUES(NULL, :id_list, :task_name, now(), :latest_date, NULL)';
+        $this->con->executeQuery($query, array(
             ':id_list'=>array($id_list, \PDO::PARAM_INT),
             ':task_name'=>array($name, PDO::PARAM_STR),
             ':latest_date'=>array($latest_date, PDO::PARAM_STR)
-        );
-        if(!isset($username))
-        {
-            $args[':username']=\PDO::PARAM_NULL;
-        }else
-        {
-            $args[':username']=array($username, \PDO::PARAM_STR);
-        }
-        $this->con->executeQuery($query, $args);
+        ));
     }
 
     /**
