@@ -66,12 +66,20 @@ class TaskGateway
         ));
     }
 
-/*
+
     public function validate($id_task)
     {
-        $query='UPDATE Task SET validation_date=SELECT SYSDATE FROM DUAL WHERE id_task=:id_task';
+        $query='UPDATE Task SET validation_date=now() WHERE id_task=:id_task';
         $this->con->executeQuery($query, array(
             ':id_task'=>array($id_task, \PDO::PARAM_INT)
         ));
-    }*/
+    }
+
+    public function getIdList($id_task){
+        $query='SELECT id_list FROM Task WHERE id_task=:id_task';
+        $this->con->executeQuery($query, array(
+            ':id_task'=>array($id_task, PDO::PARAM_INT)
+        ));
+        return $this->con->getResults();
+    }
 }

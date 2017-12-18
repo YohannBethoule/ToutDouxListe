@@ -17,8 +17,6 @@ class ToDoList
 
     private $creation_date;
 
-    private $task_manager;
-
     /**
      * ToDoList constructor.
      * @param $id_list
@@ -35,8 +33,6 @@ class ToDoList
         $this->username=$username;
 
         $this->creation_date=$creation_date;
-
-        $this->task_manager=new TaskManager($this->id_list);
     }
 
     /**

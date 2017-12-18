@@ -59,6 +59,14 @@ class ToDoListGateway
         return $this->con->getResults();
     }
 
+    public function get($id_list){
+        $query= 'SELECT * FROM ToDoList WHERE id_list=:id_list';
+        $this->con->executeQuery($query, array(
+            ':id_list'=>array($id_list, PDO::PARAM_INT)
+        ));
+        return $this->con->getResults();
+    }
+
     /**
      * Deletes a list from the database.
      * @param $id_list the id of the list

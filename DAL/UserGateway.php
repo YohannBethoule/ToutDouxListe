@@ -39,8 +39,6 @@ class UserGateway
             ':username'=>array($username, PDO::PARAM_STR)
         ));
         $user=$this->con->getResults();
-        if(isset($user) && $user!=null)
-            $user=$user[0];
-        return $user;
+        return $user[0];
     }
 }

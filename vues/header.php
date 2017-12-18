@@ -4,10 +4,11 @@
     </div>
     <div class="col-lg-4" style="text-align: right">
         <?php
-        if(!isset($_SESSION['username'])){
+        if(!isset($_SESSION['user'])){
             echo "<a href='?action=signIn'>Connexion</a> <br>";
             echo "<a href='?action=signUp'>Inscription</a>";
         }else{
+            echo $_SESSION['user']. "<br/>";
             echo "<a href='?action=disconnect'>Deconnexion</a> <br>";
         }
 

@@ -16,7 +16,7 @@ require_once(__DIR__.'/config/config.php');
 require_once(__DIR__.'/config/Autoload.php');
 
 
-//crée une connexion à la base de données et charge nos fichiers
+//crée une session et charge nos fichiers
 session_start();
 Autoload::load();
 

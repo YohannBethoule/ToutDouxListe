@@ -33,11 +33,23 @@ class TaskManager
         return $tasks;
     }
 
-    public function deletePublicTask($id_task){
+    public function getList($id_task){
+        $id_list=$this->task_gt->getIdList($id_task);
+        $res=$this->list_gt->get($id_list[0]['id_list']);
+        var_dump($res);
+        $res=$res[0];
+        return new ToDoList($res['id_list'], $res['list_name'], $res['username'], $res['creationDate']);
+    }
+
+    public function deleteTask($id_task){
         $this->task_gt->delete($id_task);
     }
 
     public function insertTask($id_list, $task_name, $latest_date){
         $this->task_gt->insert($task_name, $id_list, null, $latest_date);
+    }
+
+    public function validateTask($id_task){
+        $this->task_gt->validate($id_task);
     }
 }

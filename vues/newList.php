@@ -20,6 +20,12 @@
             <form action="http://localhost/ToutDouxListe/?action=insertList" method="post">
                 <label content="Nom de la liste"/>
                 <input type="text" name="list_name"/><br><br>
+                <?php
+                    if(isset($_SESSION['user'])){
+                        echo "<label content='Rendre publique'/>";
+                        echo "<input type='checkbox' name='checkPublic'/>";
+                    }
+                ?>
                 <input type="submit" value="Créer la liste">
             </form>
         </section>

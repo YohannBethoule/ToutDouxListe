@@ -32,12 +32,16 @@
                 <?php
                 if(isset($res)) {
                     foreach ($res as $row) {
-                        echo "<tr>";
-                        echo "<td></td>";
-                        echo "<td id='name'>" . $row['task_name'] . "</td>";
-                        echo "<td>" . $row['creation_date'] . "</td>";
-                        echo "<td>" . $row['latest_date'] . "</td>";
-                        echo "<td><a href='?id_task=".$row['id_task']."&action=deletePublicTask'>supprimer</a></td>";
+                        if(!($row->isValid())){
+                            echo "<tr>";
+                        }else{
+                            echo "<tr class='checked'>";
+                        }
+                        echo "<td id='name' data-id='".$row->getId()."'>" . $row . "</td>";
+                        echo "<td>" . $row->getCreationDate() . "</td>";
+                        echo "<td>" . $row->getLatestDate() . "</td>";
+                        echo "<td><a href='?id_task=".$row->getId()."&action=validateTask'>valider</a></td>";
+                        echo "<td><a href='?id_task=".$row->getId()."&action=deleteTask'>supprimer</a></td>";
                         echo "</tr>";
                     }
                 }else{
@@ -48,7 +52,7 @@
                 </tbody>
             </table>
             <p>
-                <?php echo "<a href=\"?id_list=".$id_list."&action=addPublicTask\">Ajouter une tâche</a>" ;?>
+                <?php echo "<a href=\"?id_list=".$id_list."&action=addTask\">Ajouter une tâche</a>" ;?>
             </p>
         </section>
     </div>
@@ -56,6 +60,8 @@
     <?php require_once('footer.php');?>
 
 </div>
+
+<script type="text/javascript" src="../lib/jquery-3.2.1.min.js"></script>
 
 </body>
 

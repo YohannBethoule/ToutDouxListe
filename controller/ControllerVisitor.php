@@ -52,7 +52,8 @@ class ControllerVisitor
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
         $list_name=Validation::nettoyer_string($_GET['list_name']);
-
+        $l_manager=new TaskManager();
+        $res=$l_manager->getTasks($id_list);
         require_once($vues['viewList']);
     }
 
@@ -73,7 +74,8 @@ class ControllerVisitor
         $id_list=Validation::nettoyer_int($_GET['id_list']);
         $task_name=Validation::nettoyer_string($_POST['task_name']);
         $latest_date=$_POST['latest_date'];
-        Visitor::insertTask($id_list, $task_name, $latest_date);
+        $t_manager=new TaskManager();
+        $t_manager->insertTask($id_list, $task_name, $latest_date);
         require_once($vues['homepage']);
     }
 
@@ -81,7 +83,8 @@ class ControllerVisitor
     public function deleteList(){
         global $vues;
         $id_list=Validation::nettoyer_int($_GET['id_list']);
-        User::deletePublicList($id_list);
+        $l_manager=new ListManager();
+        $l_manager->deleteList($id_list);
         require_once($vues['homepage']);
     }
 
@@ -89,8 +92,19 @@ class ControllerVisitor
     public function deleteTask(){
         global $vues;
         $id_task=Validation::nettoyer_string($_GET['id_task']);
-        User::deletePublicTask($id_task);
+        $t_manager=new TaskManager();
+        $t_manager->deleteTask($id_task);
         require_once $vues['homepage'];
+    }
+
+    public function validateTask(){
+        global $vues;
+        $id_task=Validation::nettoyer_int($_GET['id_task']);
+        $t_manager=new TaskManager();
+        $t_manager->validateTask($id_task);
+        $l=$t_manager->getList($id_task);
+        $loc="Location: index.php?action=displayList&id_list=".$l->getId()."&list_name=".$l;
+        header($loc);
     }
 
 
@@ -98,7 +112,8 @@ class ControllerVisitor
         global $vues;
         $username=Validation::nettoyer_string($_POST['username']);
         $password=Validation::nettoyer_string($_POST['password']);
-        Visitor::insertUser($username, $password);
+        $u_manager=new UserManager();
+        $u_manager->insertUser($username, $password);
         require_once ($vues['homepage']);
     }
 
@@ -107,19 +122,4 @@ class ControllerVisitor
         require_once $vues['signup'];
     }
 
-    public  function signIn(){
-        global $vues;
-        require_once $vues['signin'];
-    }
-
-    public function connection(){
-        global $vues;
-        $username=Validation::nettoyer_string($_POST['username']);
-        $password=Validation::nettoyer_string($_POST['password']);
-        if(User::connection($username, $password)){
-            require_once($vues['homepage']);
-        }else{
-            require_once($vues['error']);
-        }
-    }
 }

@@ -26,13 +26,7 @@ class ListManager
         return $this->lists;
     }
 
-    public function get($id_list){
-        foreach ($this->lists as $l){
-            if($l->id_list==$id_list){
-                return $l;
-            }
-        }
-    }
+
 
     public function getByUser($username){
         $res=$this->list_gt->getByUser($username);
@@ -41,7 +35,7 @@ class ListManager
         }
     }
 
-    public function deletePublicList($id_list){
+    public function deleteList($id_list){
         $this->list_gt->delete($id_list);
     }
 

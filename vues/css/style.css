@@ -44,18 +44,9 @@ nav{
 }
 
 #todolist.checked{
-    cursor: pointer;
-    position: relative;
-    transition: 0.2s;
-
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    background-color: lightgray;
 }
 
 #todolist #name.checked{
     text-decoration: line-through;
-    background-color: lightgray;
 }

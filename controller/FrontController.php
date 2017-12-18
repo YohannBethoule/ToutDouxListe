@@ -29,15 +29,16 @@ class FrontController
             'addTask',
             'insertTask',
             'validateTask',
-            "signIn",
             "signUp",
-            "connection",
-            'insertUser');
+            'insertUser',
+            "deleteList",
+            "deleteTask"
+        );
         $listAction_User = array(
             'disconnect',
             'consultPrivateLists',
-            "deleteList",
-            "deleteTask"
+            "connection",
+            "signIn",
         );
 
 
