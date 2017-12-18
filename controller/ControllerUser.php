@@ -44,7 +44,8 @@ class ControllerUser
     public function consultPrivateLists(){
         global $vues;
         $l_manager= new ListManager();
-        $l_manager->getByUser(Validation::nettoyer_string($_SESSION['user']));
+        $username=Validation::nettoyer_string($_SESSION['user']);
+        $l_manager->getByUser($username);
         require_once($vues['displayLists']);
     }
 }

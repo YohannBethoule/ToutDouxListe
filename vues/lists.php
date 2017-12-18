@@ -13,10 +13,17 @@
 <body>
 <div class="container-fluid">
     <?php require_once('header.php');?>
-    <div class="l">
+    <div class="row">
         <?php require_once('menu.php');?>
         <section class="col-lg-10">
-            <h1>Listes publiques :</h1>
+            <?php
+                if(isset($username)){
+                    echo "<h1>Vos listes privées :</h1>";
+                }else{
+                    echo "<h1>Listes publiques :</h1>";
+                }
+            ?>
+
             <table>
                 <thead>
                 <tr>
@@ -26,8 +33,8 @@
                 </thead>
                 <tbody>
                 <?php
-                if(isset($l_manager)) {
-                    foreach ($l_manager->getAll() as $l) {
+                if(isset($lists)) {
+                    foreach ($lists as $l) {
                         echo "<tr>";
                         echo "<td><a href=\"?id_list=".$l->getId()."&list_name=".$l."&action=displayList\">" . $l . "</a></td>";
                         echo "<td>" . $l->getCreation_Date() . "</td>";
@@ -40,8 +47,9 @@
                 ?>
                 </tbody>
             </table>
-        </section>
-    </div>
+        </div>
+    </section>
+
 
     <?php require_once('footer.php');?>
 

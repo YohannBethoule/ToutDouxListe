@@ -22,10 +22,6 @@ class ListManager
         $this->task_gt=new TaskGateway($con);
     }
 
-    public function getAll(){
-        return $this->lists;
-    }
-
     public function getListById($id_list){
         $res=$this->list_gt->get($id_list);
         $res=$res[0];
@@ -35,8 +31,9 @@ class ListManager
     public function getByUser($username){
         $res=$this->list_gt->getByUser($username);
         foreach ($res as $row){
-            $this->lists[]=new ToDoList($row['id_list'],$row['list_name'],null,$row['creation_date']);
+            $lists[]=new ToDoList($row['id_list'],$row['list_name'],null,$row['creation_date']);
         }
+        return $lists;
     }
 
     public function deleteList($id_list){

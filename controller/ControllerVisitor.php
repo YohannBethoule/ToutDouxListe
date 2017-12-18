@@ -45,7 +45,7 @@ class ControllerVisitor
     public function consultPublicLists(){
         global $vues;
         $l_manager=new ListManager();
-        $l_manager->getByUser(null);
+        $lists=$l_manager->getByUser(null);
         require_once($vues['displayLists']);
     }
 
