@@ -18,12 +18,12 @@
         <section class="col-lg-10">
             <h1>Création d'une liste</h1>
             <form action="http://localhost/ToutDouxListe/?action=insertList" method="post">
-                <label content="Nom de la liste"/>
+                <label>Nom de la liste:</label>
                 <input type="text" name="list_name"/><br><br>
                 <?php
                     if(isset($_SESSION['user'])){
-                        echo "<label content='Rendre publique'/>";
-                        echo "<input type='checkbox' name='checkPublic'/>";
+                        echo "<label>Rendre privée:</label>";
+                        echo "<input type='checkbox' name='checkPrivate' checked/><br/>";
                     }
                 ?>
                 <input type="submit" value="Créer la liste">

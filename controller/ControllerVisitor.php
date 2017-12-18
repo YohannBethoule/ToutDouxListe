@@ -31,9 +31,11 @@ class ControllerVisitor
         $list_name=Validation::nettoyer_string($_POST['list_name']);
         $l_manager=new ListManager();
         $username=Validation::nettoyer_string($_SESSION['user']);
-        
-        $l_manager->insert($list_name,null);
-        $l_manager->insert($list_name,$username);
+        if(isset($_POST[checkPrivate]) && $username!=null){
+            $l_manager->insert($list_name,$username);
+        }else{
+            $l_manager->insert($list_name,null);
+        }
         require_once($vues['homepage']);
     }
 

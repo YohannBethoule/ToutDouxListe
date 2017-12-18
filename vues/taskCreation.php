@@ -17,9 +17,9 @@
         <section class="col-lg-10">
             <h1>Ajout d'une tâche</h1>
             <form action="http://localhost/ToutDouxListe/?action=insertTask&id_list=<?php echo $id_list?>" method="post">
-                <label content="Nom de la tâche"/>
+                <label>Nom de la tâche:</label>
                 <input type="text" name="task_name"/><br><br>
-
+                <label>Date limite:</label>
                 <input type="date" name="latest_date"/><br><br>
 
                 <input type="submit" value="Ajouter la tâche">

@@ -31,23 +31,20 @@ class ControllerUser
         }
     }
 
+    /**
+     * Disconnect the current user by unsetting the $_SESSION variable.
+     */
     public function disconnect(){
         global $vues;
         session_unset();
-
         require_once($vues['homepage']);
     }
+
+
     public function consultPrivateLists(){
         global $vues;
         $l_manager= new ListManager();
-        $l_manager->getByUser($_SESSION['user']);
+        $l_manager->getByUser(Validation::nettoyer_string($_SESSION['user']));
         require_once($vues['displayLists']);
     }
-    public function deleteList(){
-
-    }
-    public function deleteTask(){
-
-    }
-
 }

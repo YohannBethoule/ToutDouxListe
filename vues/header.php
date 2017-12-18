@@ -8,7 +8,7 @@
             echo "<a href='?action=signIn'>Connexion</a> <br>";
             echo "<a href='?action=signUp'>Inscription</a>";
         }else{
-            echo $_SESSION['user']. "<br/>";
+            echo Validation::nettoyer_string($_SESSION['user']). "<br/>";
             echo "<a href='?action=disconnect'>Deconnexion</a> <br>";
         }
 
