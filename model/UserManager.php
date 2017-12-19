@@ -49,7 +49,7 @@ class UserManager
     }
 
 
-    public static function insert($username, $password){
+    public static function insertUser($username, $password){
         global $base, $blogin, $bpassword;
         $con=new Connection($base, $blogin, $bpassword);
         $user_gt=new UserGateway($con);

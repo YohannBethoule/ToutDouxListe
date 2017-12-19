@@ -44,7 +44,7 @@ class TaskGateway
      * @return mixed an array containing the results of the query.
      */
     public function get($id_list){
-        $query='SELECT * FROM Task WHERE id_list=:id_list';
+        $query='SELECT * FROM Task WHERE id_list=:id_list ORDER BY latest_date';
         $this->con->executeQuery($query, array(
             ':id_list'=>array($id_list, PDO::PARAM_INT)
         ));

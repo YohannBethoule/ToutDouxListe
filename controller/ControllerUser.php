@@ -45,7 +45,7 @@ class ControllerUser
         global $vues;
         $l_manager= new ListManager();
         $username=Validation::nettoyer_string($_SESSION['user']);
-        $l_manager->getByUser($username);
+        $lists=$l_manager->getByUser($username);
         require_once($vues['displayLists']);
     }
 }
