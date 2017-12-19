@@ -42,7 +42,7 @@
                         echo "</tr>";
                     }
                 }else{
-                    echo "<h2>Erreur d'appel dans la page</h2>";
+                    echo "<h2>Pas de listes à afficher</h2>";
                 }
                 ?>
                 </tbody>
