@@ -30,8 +30,8 @@ class ControllerVisitor
         global $vues;
         $list_name=Validation::nettoyer_string($_POST['list_name']);
         $l_manager=new ListManager();
-        $username=Validation::nettoyer_string($_SESSION['user']);
-        if(isset($_POST[checkPrivate]) && $username!=null){
+        if(isset($_POST[checkPrivate]) && isset($_SESSION['user'])){
+            $username=Validation::nettoyer_string($_SESSION['user']);
             $l_manager->insert($list_name,$username);
         }else{
             $l_manager->insert($list_name,null);
